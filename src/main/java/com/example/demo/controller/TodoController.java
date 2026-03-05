@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+﻿package com.example.demo.controller;
 
 import java.util.List;
 
@@ -20,6 +20,11 @@ public class TodoController {
         );
         model.addAttribute("todos", todos);
         return "todo/list";
+    }
+
+    @GetMapping("/new")
+    public String newTodo() {
+        return "todo/new";
     }
 
     public record TodoItemView(Long id, String title, String status) {
