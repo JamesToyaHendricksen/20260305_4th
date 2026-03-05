@@ -19,14 +19,17 @@
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
                     <h2 class="h6 text-muted mb-2">タイトル</h2>
-                    <p class="mb-0 fs-5" th:text="${title}">サンプルタスク</p>
+                    <input type="text" class="form-control" th:value="${title}" readonly>
                 </div>
             </div>
 
-            <div class="d-flex gap-2">
-                <a class="btn btn-primary" th:href="@{/todo/complete}">登録</a>
-                <a class="btn btn-outline-secondary" th:href="@{/todo/new}">戻る</a>
-            </div>
+            <form th:action="@{/todo/complete}" method="post">
+                <input type="hidden" name="title" th:value="${title}">
+                <div class="d-flex gap-2">
+                    <a class="btn btn-outline-secondary" href="javascript:history.back();">戻る</a>
+                    <button type="submit" class="btn btn-primary">登録</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
