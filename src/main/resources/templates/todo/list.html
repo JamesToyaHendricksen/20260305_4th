@@ -29,10 +29,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:if="${#lists.isEmpty(todos)}">
+                    <tr th:if="${todos == null or #lists.isEmpty(todos)}">
                         <td colspan="3" class="text-center text-muted">ToDoがありません</td>
                     </tr>
-                    <tr th:each="todo : ${todos}">
+                    <tr th:if="${todos != null}" th:each="todo : ${todos}">
                         <td th:text="${todo.id}">1</td>
                         <td th:text="${todo.title}">サンプルタイトル</td>
                         <td>
