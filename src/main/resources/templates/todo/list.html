@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -35,7 +35,10 @@
                     <tr th:each="todo : ${todos}">
                         <td th:text="${todo.id}">1</td>
                         <td th:text="${todo.title}">サンプルタイトル</td>
-                        <td th:text="${todo.status}">未着手</td>
+                        <td>
+                            <span class="badge text-bg-success" th:if="${todo.completed}">完了</span>
+                            <span class="badge text-bg-secondary" th:unless="${todo.completed}">未完了</span>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
