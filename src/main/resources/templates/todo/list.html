@@ -17,6 +17,15 @@
         <a class="btn btn-primary" th:href="@{/todo/new}">新規登録</a>
     </div>
 
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show auto-dismiss" role="alert">
+        <span th:text="${successMessage}">ToDoを削除しました</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show auto-dismiss" role="alert">
+        <span th:text="${errorMessage}">削除に失敗しました</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="table-responsive">
@@ -55,5 +64,15 @@
         </div>
     </div>
 </div>
+<script>
+    setTimeout(function () {
+        document.querySelectorAll('.auto-dismiss').forEach(function (alert) {
+            alert.classList.remove('show');
+            setTimeout(function () {
+                alert.remove();
+            }, 150);
+        });
+    }, 3000);
+</script>
 </body>
 </html>
