@@ -35,7 +35,7 @@
                         <th scope="col" style="width: 80px;">ID</th>
                         <th scope="col">タイトル</th>
                         <th scope="col" style="width: 140px;">ステータス</th>
-                        <th scope="col" style="width: 120px;">操作</th>
+                        <th scope="col" style="width: 180px;">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,12 +50,16 @@
                             <span class="badge text-bg-secondary" th:unless="${todo.completed}">未完了</span>
                         </td>
                         <td>
-                            <form th:action="@{/todo/{id}/delete(id=${todo.id})}"
-                                  method="post"
-                                  class="mb-0"
-                                  onsubmit="return confirm('本当に削除しますか？');">
-                                <button type="submit" class="btn btn-danger btn-sm">削除</button>
-                            </form>
+                            <div class="d-flex gap-2">
+                                <a class="btn btn-outline-primary btn-sm"
+                                   th:href="@{/todo/{id}/edit(id=${todo.id})}">編集</a>
+                                <form th:action="@{/todo/{id}/delete(id=${todo.id})}"
+                                      method="post"
+                                      class="mb-0"
+                                      onsubmit="return confirm('本当に削除しますか？');">
+                                    <button type="submit" class="btn btn-danger btn-sm">削除</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     </tbody>

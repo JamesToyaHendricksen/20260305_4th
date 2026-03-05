@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Todo;
 import com.example.demo.service.TodoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,17 @@ public class TodoController {
     @GetMapping("/new")
     public String newTodo() {
         return "todo/form";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
+        Todo todo = todoService.findById(id);
+        if (todo == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "指定されたToDoが見つかりません");
+            return "redirect:/todo";
+        }
+        model.addAttribute("todo", todo);
+        return "todo/edit";
     }
 
     @PostMapping("/confirm")
