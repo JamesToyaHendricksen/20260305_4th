@@ -35,7 +35,7 @@
                         <th scope="col" style="width: 80px;">ID</th>
                         <th scope="col">タイトル</th>
                         <th scope="col" style="width: 140px;">ステータス</th>
-                        <th scope="col" style="width: 180px;">操作</th>
+                        <th scope="col" style="width: 260px;">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,13 +44,20 @@
                     </tr>
                     <tr th:if="${todos != null}" th:each="todo : ${todos}">
                         <td th:text="${todo.id}">1</td>
-                        <td th:text="${todo.title}">サンプルタイトル</td>
+                        <td>
+                            <span th:if="${todo.completed}" th:text="${todo.title}" class="text-muted text-decoration-line-through">サンプルタイトル</span>
+                            <span th:unless="${todo.completed}" th:text="${todo.title}">サンプルタイトル</span>
+                        </td>
                         <td>
                             <span class="badge text-bg-success" th:if="${todo.completed}">完了</span>
                             <span class="badge text-bg-secondary" th:unless="${todo.completed}">未完了</span>
                         </td>
                         <td>
                             <div class="d-flex gap-2">
+                                <form th:action="@{/todo/{id}/toggle(id=${todo.id})}" method="post" class="mb-0">
+                                    <button type="submit" class="btn btn-outline-success btn-sm"
+                                            th:text="${todo.completed} ? '未完了に戻す' : '完了にする'">完了にする</button>
+                                </form>
                                 <a class="btn btn-outline-primary btn-sm"
                                    th:href="@{/todo/{id}/edit(id=${todo.id})}">編集</a>
                                 <form th:action="@{/todo/{id}/delete(id=${todo.id})}"

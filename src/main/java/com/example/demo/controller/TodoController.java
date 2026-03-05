@@ -75,6 +75,12 @@ public class TodoController {
         return "redirect:/todo";
     }
 
+    @PostMapping("/{id}/toggle")
+    public String toggle(@PathVariable("id") Long id) {
+        todoService.toggleCompleted(id);
+        return "redirect:/todo";
+    }
+
     @PostMapping("/{id}/delete")
     public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         boolean deleted = todoService.deleteById(id);
